@@ -27,7 +27,7 @@ int main() {
     if (c == "/") { r = x/y; }
     if (c == "%") { int p = x; int g = y; r = p%g; }
 
-    cout << " El resultado es: " << r << endl;
+    cout << "Resultado: " << r << endl;
 
 
 
