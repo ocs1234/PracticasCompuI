@@ -9,25 +9,26 @@ int main() {
 
     // Calculadora para dos elementos
 
-    float x=0;
+    ffloat x=0;
     float y=0;
     float r=0;
-    string c;
+    char c;
 
-    cout << " ingrese un numero: " << endl;
+    cout << "Primer numero:" << endl;
     cin >> x;
-    cout << " ingrese operación a realizar " << endl;
+    cout << "Operacion:" << endl;
     cin >> c;
-    cout << " ingrese un numero: " << endl;
+    cout << "Segundo numero:" << endl;
     cin >> y;
 
-    if (c == "+") { r = x+y; }
-    if (c == "-") { r = x-y; }
-    if (c == "*") { r = x*y; }
-    if (c == "/") { r = x/y; }
-    if (c == "%") { int p = x; int g = y; r = p%g; }
+    if (c == '+') { r = x+y; }
+    if (c == '-') { r = x-y; }
+    if (c == '*') { r = x*y; }
+    if (c == '/') { if(y == 0) { cout << "Indeterminacion" << endl; } else r = x/y; }
+    if (c == '%') { int p = x; int g = y; r = p%g; }
+    else {cout << "No se ingreso ninguna operación";}
 
-    cout << "Resultado: " << r << endl;
+    if(r==0) {} else {cout << "Resultado:" << endl; cout << x << " " << c << " " << y << " = " << r ;}
 
 
 
