@@ -9,7 +9,7 @@ int main() {
 
     // Calculadora para dos elementos
 
-    ffloat x=0;
+    float x=0;
     float y=0;
     float r=0;
     char c;
