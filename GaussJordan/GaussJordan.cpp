@@ -120,8 +120,8 @@ void GaussJordan(matriz & miMatriz)
                 if( r != 0 ){
 
                     miMatriz[j][k] = l*miMatriz[i][k] + miMatriz[j][k];
-                    ImprimirMatriz(miMatriz);
-                    cout << miMatriz[j][k] << "---------" << i << j << k << endl;
+                    //ImprimirMatriz(miMatriz);
+                    //cout << miMatriz[j][k] << "---------" << i << j << k << endl;
 
                 }
                 else {
@@ -143,8 +143,8 @@ void GaussJordan(matriz & miMatriz)
                     if( k==variables ){ r = miMatriz[i][i]; l = miMatriz[j][i]*(-1/miMatriz[i][i]); }
 
                     //miMatriz[z][k] = s*(-1/miMatriz[z][i])*miMatriz[i][k] + miMatriz[z][k];
-                    ImprimirMatriz(miMatriz);
-                    cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
+                    //ImprimirMatriz(miMatriz);
+                    //cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
 
                 }
 
@@ -168,8 +168,8 @@ void GaussJordan(matriz & miMatriz)
                 if( miMatriz[i][i] != 0 ){
 
                     miMatriz[j][k] = l*miMatriz[i][k] + miMatriz[j][k];
-                   ImprimirMatriz(miMatriz);
-                   cout << miMatriz[j][k] << "---------" << i << j << k << endl;
+                   //ImprimirMatriz(miMatriz);
+                   //cout << miMatriz[j][k] << "---------" << i << j << k << endl;
 
 
                 }
@@ -191,8 +191,8 @@ void GaussJordan(matriz & miMatriz)
 
                     if( k==variables ){ r = miMatriz[i][i]; l = miMatriz[j][i]*(-1/miMatriz[i][i]); }
 
-                    ImprimirMatriz(miMatriz);
-                    cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
+                    //ImprimirMatriz(miMatriz);
+                    //cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
 
                 }
             }
