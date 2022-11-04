@@ -31,14 +31,14 @@ int main()
 
     // Pedimos al usuario que llene la matriz
     LlenarMatriz(miMatriz);
-    //ImprimirMatriz(miMatriz);
 
     // Aplicamos el método de Gauss-Jordan sobre nuestra matriz
     GaussJordan(miMatriz);
-    //ImprimirMatriz(miMatriz);
 
     // Imprimimos la solución de la matriz
     ImprimirSolucion(miMatriz);
+
+    //ImprimirMatriz(miMatriz);
 
     return 0; // Indicamos que salimos del programa con éxito
 }
@@ -82,66 +82,121 @@ No regresa ningún valor.
 template <typename matriz>
 void ImprimirSolucion(matriz & miMatriz)
 {
-    int variables = miMatriz.size();
-    for (int i = 0; i < variables; i++) {
-        cout << "Solución:\n" << "x" << i << " = "<< miMatriz[i][variables]/miMatriz[i][i] << endl;
-    }
+
+        int variables = miMatriz.size();
+        for (int i = 0; i < variables; i++) {
+            cout << "Solución:\n" << "x" << i << " = "<< miMatriz[i][variables]/miMatriz[i][i] << endl;
+        }
+
+    //TODO
 }
 
 /*
 Implementa el algoritmo de Gauss-Jordan sobre 'miMatriz', finalizando en ella la solución del algoritmo.
 No regresa ningún valor.
 */
+
 template <typename matriz>
 void GaussJordan(matriz & miMatriz)
 {
 
-    int fila =1;
-    float temp = 0;
-    int sumafila = 0;
-    for (int i = 0; i < miMatriz.size() ; i++) {
-        fila = 1;
-        while (miMatriz[i][i] == 0 && fila < miMatriz.size()) {
-            for (int j = 0; j <= miMatriz.size(); j++) {
-                temp = miMatriz[i][j];
-                miMatriz[i][j] = miMatriz[fila][j];
-                miMatriz[fila][j] = temp;
+// Gauss
+
+    ImprimirMatriz(miMatriz);
+
+    int variables = miMatriz.size();
+    for (int i = 0; i < variables; ++i) {
+        for (int j = i+1; j < variables; ++j) {
+
+            float l = miMatriz[j][i]*(-1/miMatriz[i][i]);
+            float r = miMatriz[i][i];
+            bool o = true;
+            int z = 0;
+
+
+            for (int k = 0; k <= variables; ++k){
+
+
+                if( r != 0 ){
+
+                    miMatriz[j][k] = l*miMatriz[i][k] + miMatriz[j][k];
+                    ImprimirMatriz(miMatriz);
+                    cout << miMatriz[j][k] << "---------" << i << j << k << endl;
+
+                }
+                else {
+
+                    if(o==true){
+                        for (int m = 0; m < variables; ++m) {
+                            if(miMatriz[m][i] != 0){
+                                o=false;
+                                z = m;
+                                break;
+                            }
+                        }
+                    }
+
+                    float n = miMatriz[z][k];
+                    miMatriz[z][k] = miMatriz[i][k];
+                    miMatriz[i][k] = n;
+
+                    if( k==variables ){ r = miMatriz[i][i]; l = miMatriz[j][i]*(-1/miMatriz[i][i]); }
+
+                    //miMatriz[z][k] = s*(-1/miMatriz[z][i])*miMatriz[i][k] + miMatriz[z][k];
+                    ImprimirMatriz(miMatriz);
+                    cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
+
+                }
+
             }
-            fila++;
-        }
-        if (fila == miMatriz.size()) {
-            continue;
         }
     }
-    int variables = 3;
-    for (int j = 0; j < variables-1; j++) {
-
-        for (int i = 0; i < (variables-1); i++) {
-
-            float multiplicador = (miMatriz[i + 1 +j][j] / miMatriz[j][j]);
 
 
-            for (int k = 0; k <= variables; k++) {
-                miMatriz[i + 1 + j][k+j] = miMatriz[i + 1 +j][k+j] - (miMatriz[j][k+j] * multiplicador);
+// Jordan
+
+    for (int i = variables-1; i >= 1; --i) {
+        for (int j = i-1; j >= 0; --j) {
+
+            float l = miMatriz[j][i]*(-1/miMatriz[i][i]);
+            int r = miMatriz[i][i];
+            int z=0;
+            bool o=true;
+
+            for (int k = variables; k >= 0; --k){
+
+                if( miMatriz[i][i] != 0 ){
+
+                    miMatriz[j][k] = l*miMatriz[i][k] + miMatriz[j][k];
+                   ImprimirMatriz(miMatriz);
+                   cout << miMatriz[j][k] << "---------" << i << j << k << endl;
 
 
+                }
+                else {
+
+                    if(o==true){
+                        for (int m = 0; m < variables; ++m) {
+                            if(miMatriz[m][i] != 0){
+                                o=false;
+                                z = m;
+                                break;
+                            }
+                        }
+                    }
+
+                    float n = miMatriz[z][k];
+                    miMatriz[z][k] = miMatriz[i][k];
+                    miMatriz[i][k] = n;
+
+                    if( k==variables ){ r = miMatriz[i][i]; l = miMatriz[j][i]*(-1/miMatriz[i][i]); }
+
+                    ImprimirMatriz(miMatriz);
+                    cout << miMatriz[j][k] << "---------" << i << j << k << r << endl;
+
+                }
             }
         }
     }
-    for (int j = variables-1 ; j >= 1; j--) {
-
-        for (int i = (variables-1); i > 0 ; i--) {
-            float multiplicador = (miMatriz[i-3+j][j]/miMatriz[j][j]);
-
-
-            for (int k = variables; k >=0 ; k--) {
-
-                miMatriz[i-3+j][k] = miMatriz[i-3+j][k] - (miMatriz[j][k] * multiplicador);
-
-            }
-
-        }
-
-    }
-
+    //TODO
 }
